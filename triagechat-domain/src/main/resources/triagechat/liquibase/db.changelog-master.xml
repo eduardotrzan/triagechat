@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+>
+    <changeSet author="eduardotrzan"
+               id="TRC-001-Pre.config.db"
+               logicalFilePath="triagechat/liquibase/changelog/TRC-001-Pre.config.db.changelog.sql">
+        <sqlFile
+                encoding="utf8"
+                path="triagechat/liquibase/changelog/TRC-001-Pre.config.db.changelog.sql"
+                splitStatements="true"
+                stripComments="true"
+        />
+    </changeSet>
+
+    <changeSet author="eduardotrzan"
+               id="TRC-002-Create.triagechat.domain"
+               logicalFilePath="triagechat/liquibase/TRC-002-Create.triagechat.domain.changelog.sql">
+        <sqlFile
+                encoding="utf8"
+                path="triagechat/liquibase/changelog/TRC-002-Create.triagechat.domain.changelog.sql"
+                splitStatements="true"
+                stripComments="true"
+        />
+    </changeSet>
+</databaseChangeLog>

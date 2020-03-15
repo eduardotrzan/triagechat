@@ -1,0 +1,10 @@
+server:
+  port: 8484
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5436/triagechat
+    username: triagechat
+    password: triagechat
+  jpa:
+    show-sql: true
