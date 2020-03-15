@@ -75,6 +75,9 @@
         <skip-unit-test>false</skip-unit-test>
         <skip-integration-test>false</skip-integration-test>
 
+        <!-- NLP -->
+        <apache-nlp.version>1.9.2</apache-nlp.version>
+
         <!-- Triage Chat -->
         <triagechat-domain.version>1.0-SNAPSHOT</triagechat-domain.version>
         <triagechat-dto.version>1.0-SNAPSHOT</triagechat-dto.version>
@@ -402,6 +405,13 @@
                         <artifactId>javassist</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!-- NLP -->
+            <dependency>
+                <groupId>org.apache.opennlp</groupId>
+                <artifactId>opennlp-tools</artifactId>
+                <version>${apache-nlp.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
