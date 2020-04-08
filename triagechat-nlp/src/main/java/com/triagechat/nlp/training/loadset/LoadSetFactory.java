@@ -3,6 +3,7 @@ package com.triagechat.nlp.training.loadset;
 import lombok.extern.slf4j.Slf4j;
 import opennlp.tools.chunker.ChunkerME;
 import opennlp.tools.chunker.ChunkerModel;
+import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.sentdetect.SentenceDetectorME;
@@ -22,6 +23,7 @@ public class LoadSetFactory {
     private static final String SENTENCE_PRE_TRAIN_PATH = "/triagechat/nlp/training/model/01-pretrained/en-sent.bin";
     private static final String TAGGING_PRE_TRAIN_PATH = "/triagechat/nlp/training/model/01-pretrained/en-pos-maxent.bin";
     private static final String CHUNKING_PRE_TRAIN_PATH = "/triagechat/nlp/training/model/01-pretrained/en-chunker.bin";
+    private static final String LEMMATIZER_PRE_TRAIN_PATH = "/triagechat/nlp/training/model/01-pretrained/en-lemmatizer.dict";
 
     public Optional<SentenceDetectorME> sentenceModel(TrainingSetType trainingSetType) {
         String trainingPath;
@@ -99,6 +101,32 @@ public class LoadSetFactory {
             return Optional.of(chunker);
         } catch (Exception e) {
             log.error("Could not create sentence detector due to an exception.", e);
+            return Optional.empty();
+        } finally {
+            closeStream(inputStream);
+        }
+    }
+
+    public Optional<DictionaryLemmatizer> lemmatizer(TrainingSetType trainingSetType) {
+        String trainingPath;
+        switch (trainingSetType) {
+            case INITIAL:
+                trainingPath = LEMMATIZER_PRE_TRAIN_PATH;
+                break;
+            default:
+                throw new RuntimeException("No training path for lemmatizer.");
+        }
+        return this.getLemmatizer(trainingPath);
+    }
+
+    private Optional<DictionaryLemmatizer> getLemmatizer(String trainingPath) {
+        InputStream inputStream = null;
+        try {
+            inputStream = getClass().getResourceAsStream(trainingPath);
+            DictionaryLemmatizer lemmatizer = new DictionaryLemmatizer(inputStream);
+            return Optional.of(lemmatizer);
+        } catch (Exception e) {
+            log.error("Could not create lemmatizer due to an exception.", e);
             return Optional.empty();
         } finally {
             closeStream(inputStream);

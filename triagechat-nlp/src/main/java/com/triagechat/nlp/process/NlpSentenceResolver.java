@@ -21,7 +21,7 @@ public class NlpSentenceResolver {
 
     private final LoadSetFactory loadSetFactory;
 
-    public List<String> resolveSentences(String text) {
+    public List<String> resolve(String text) {
         Optional<SentenceDetectorME> sentenceDetectorOpt = loadSetFactory.sentenceModel(TrainingSetType.INITIAL);
         if (sentenceDetectorOpt.isEmpty()) {
             return Collections.emptyList();
