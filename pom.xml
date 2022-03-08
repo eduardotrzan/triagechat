@@ -56,7 +56,7 @@
         <google-guava.version>28.2-jre</google-guava.version>
 
         <!-- Database -->
-        <liquibase.version>3.8.5</liquibase.version>
+        <liquibase.version>4.8.0</liquibase.version>
 
         <lombok.version>1.18.10</lombok.version>
         <lombok-maven.version>1.18.10.0</lombok-maven.version>
